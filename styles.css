@@ -1,0 +1,447 @@
+:root {
+  /* Primary Colors */
+  --color-creme: #f4ebe2;
+  --color-light-creme: #f8f7f4;
+  --color-white: #ffffff;
+  --color-black: #181818;
+
+  /* Secondary Colors */
+  --color-dark-blue: #363b48;
+  --color-medium-blue: #75809c;
+  --color-light-blue: #b4c4e4;
+
+  /* Tertiary Colors */
+  --color-dark-creme: #cec3b2;
+  --color-blue: #324bf9;
+  --color-green: #42ad9e;
+}
+
+* {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  color: var(--color-black);
+  background-color: var(--color-light-creme);
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  margin-top: 2rem;
+}
+.nav-links {
+  display: flex;
+  align-items: baseline;
+  gap: 40px;
+}
+
+a.cta-button:nth-child(1) {
+  display: none;
+}
+
+.organic-blob {
+  position: absolute;
+  top: 68%;
+  right: -27%;
+  width: 322px;
+}
+
+.cta-button {
+  display: inline-flex;
+  padding: 12px 30px;
+  background-color: #181818;
+  color: #f6ebe1;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  margin-top: 20px;
+  width: fit-content;
+  white-space: nowrap;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: #b4c4e4;
+  color: #181818;
+}
+
+.cta-button:hover .arrow {
+  transform: translateX(4px);
+  color: #181818;
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+  color: #f6ebe1;
+}
+
+/* Above the fold (Section 1) */
+.hero {
+  background-color: var(--color-light-creme);
+  padding: 2rem;
+  overflow: hidden;
+  color: var(--color-black);
+}
+
+.hero h3 {
+  color: var(--color-blue);
+  /* margin-bottom: 0.5rem; */
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  /* margin-bottom: 1rem; */
+  margin: 0;
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.default-span {
+  color: #004cfc;
+  font-family: "DM Serif Display", serif;
+}
+
+.hero p {
+  margin-bottom: 1.5rem;
+  max-width: 65ch;
+  line-height: 1.8rem;
+}
+
+.hero .buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero .btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-black);
+  border-radius: 50px;
+  background-color: transparent;
+  color: var(--color-black);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.hero .btn.btn-fill {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: none;
+}
+
+.hero .btn:hover {
+  background-color: var(--color-medium-blue);
+  color: var(--color-black);
+}
+
+/* Section 2 */
+.section-2 {
+  background-color: var(--color-creme);
+  padding: 2rem;
+}
+
+.section-2 h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+.section-2 p {
+  text-align: center;
+  max-width: 600px;
+  line-height: 2rem;
+  margin-bottom: 3rem;
+}
+
+.section-2 .sec2-image {
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 15px;
+}
+
+/* Section 3 (Accordion Section) */
+.section-3 {
+  background-color: var(--color-white);
+  padding: 2rem;
+}
+
+.section-3 .subheading {
+  background-color: var(--color-dark-creme);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-block: 1rem;
+  border-radius: 50px;
+}
+
+.section-3 h2 {
+  margin-bottom: 1rem;
+  text-align: left;
+  font-weight: bold;
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+.section-3 p {
+  text-align: left;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 2rem;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.accordion-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.accordion-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  background-color: #333;
+  transition: transform 0.3s ease;
+}
+
+.accordion-icon::before {
+  width: 2px;
+  height: 20px;
+  left: 9px;
+  top: 0;
+}
+
+.accordion-icon::after {
+  width: 20px;
+  height: 2px;
+  left: 0;
+  top: 9px;
+}
+
+.active .accordion-icon::before {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0;
+}
+
+.active + .accordion-content {
+  max-height: 500px;
+  padding: 0 0 15px 0;
+}
+
+/* Section 5 (Contact Form) */
+.section-5 {
+  text-align: center;
+}
+
+.section-5 .section-5-image {
+  width: 100%;
+}
+
+.section-5 h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.section-5 p {
+  max-width: 600px;
+  padding-top: 2rem;
+  padding-inline: 2rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.section-5 form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+.section-5 form input,
+.section-5 form textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--color-black);
+  border-radius: 5px;
+}
+
+.section-5 form button {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 0.75rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-light-creme);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Responsive (Desktop) */
+
+@media (min-width: 768px) {
+  a.cta-button:nth-child(1) {
+    display: inline-block;
+  }
+
+  header.container {
+    padding-inline: 5rem;
+  }
+
+  .hero,
+  .section-2,
+  .section-3,
+  .section-4 {
+    padding: 5rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    margin-block: 2.5rem;
+  }
+
+  .hero {
+    height: 60vh;
+  }
+  .hero .buttons {
+    margin-block: 4rem;
+  }
+
+  .organic-blob {
+    top: 52%;
+    right: -17%;
+    width: 559px;
+  }
+  /* Section 2 Desktop Layout */
+  .section-2 .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .section-2 h2,
+  .section-2 p {
+    text-align: left;
+  }
+  .section-2 .sec2-image {
+    border-radius: 15px;
+    width: 50%;
+  }
+  .section-2 .text-block {
+    width: 50%;
+  }
+
+  /* accordion desktop*/
+  .accordion {
+    margin: auto;
+  }
+
+  .accordion-header {
+    padding: 20px 0;
+  }
+
+  .accordion-title {
+    font-size: 18px;
+  }
+
+  .accordion-content {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .accordion-content p {
+    width: 50%;
+    padding-right: 20px;
+  }
+
+  /* Section 5 Desktop */
+  .section-5 form {
+    width: 50%;
+    justify-content: center;
+  }
+
+  /* Footer Desktop */
+  footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  footer .footer-column {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .organic-blob {
+    top: 42%;
+    right: -6%;
+    width: 639px;
+  }
+}
