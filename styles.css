@@ -152,7 +152,7 @@ a.cta-button:nth-child(1) {
 }
 
 .hero .btn:hover {
-  background-color: var(--color-medium-blue);
+  background-color: var(--color-light-blue);
   color: var(--color-black);
 }
 
@@ -427,11 +427,6 @@ footer {
   }
 
   /* Footer Desktop */
-  footer .footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
 
   footer .footer-column {
     text-align: center;
@@ -443,5 +438,11 @@ footer {
     top: 42%;
     right: -6%;
     width: 639px;
+  }
+
+  footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 5rem;
   }
 }
