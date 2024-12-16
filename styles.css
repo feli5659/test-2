@@ -154,8 +154,25 @@ a.cta-button:nth-child(1) {
 .hero .btn:hover {
   background-color: var(--color-light-blue);
   color: var(--color-black);
+  border: 2px solid var(--color-black);
 }
 
+/* logo-grid */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  align-items: center;
+  background-color: var(--color-white);
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
 /* Section 2 */
 .section-2 {
   background-color: var(--color-creme);
@@ -270,6 +287,10 @@ a.cta-button:nth-child(1) {
   transform: rotate(90deg);
 }
 
+.active .accordion-title {
+  color: var(--color-green);
+}
+
 .accordion-content {
   max-height: 0;
   overflow: hidden;
@@ -285,6 +306,10 @@ a.cta-button:nth-child(1) {
 /* Section 5 (Contact Form) */
 .section-5 {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-5 .section-5-image {
@@ -311,7 +336,6 @@ a.cta-button:nth-child(1) {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-
   gap: 1rem;
 }
 
@@ -368,7 +392,7 @@ footer {
   }
 
   .hero {
-    height: 60vh;
+    height: 57vh;
   }
   .hero .buttons {
     margin-block: 4rem;
@@ -378,6 +402,20 @@ footer {
     top: 52%;
     right: -17%;
     width: 559px;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .logo-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0;
+    z-index: 100;
+    position: relative;
+  }
+
+  .logo {
+    width: 100px; /* Adjust for larger screens */
   }
   /* Section 2 Desktop Layout */
   .section-2 .container {
