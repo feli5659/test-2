@@ -206,13 +206,39 @@
                   dynamicP.dataset.originalContent = dynamicP.textContent;
                 }
                 dynamicP.textContent = data.text;
+
+                // Update the h2 element based on the new paragraph content
+                const section2H2 = document.querySelector(".section-2 .text-block h2");
+                if (section2H2) {
+                  // Store original h2 content if not already stored
+                  if (!section2H2.dataset.originalContent) {
+                    section2H2.dataset.originalContent = section2H2.textContent;
+                  }
+
+                  // Generate a relevant heading based on the paragraph content
+                  const paragraphText = data.text;
+                  let newHeading = `${keyword} Eksperter`;
+
+                  // If the API response includes a title, use that instead
+                  if (data.title) {
+                    newHeading = data.title;
+                  }
+
+                  section2H2.textContent = newHeading;
+                }
               }
             })
             .catch((error) => {
               console.error("Error:", error);
+              // Restore original content if there's an error
               const dynamicP = document.querySelector(".dynamicp");
               if (dynamicP && dynamicP.dataset.originalContent) {
                 dynamicP.textContent = dynamicP.dataset.originalContent;
+              }
+
+              const section2H2 = document.querySelector(".section-2 .text-block h2");
+              if (section2H2 && section2H2.dataset.originalContent) {
+                section2H2.textContent = section2H2.dataset.originalContent;
               }
             });
         }

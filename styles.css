@@ -307,7 +307,6 @@ a.cta-button:nth-child(1) {
 }
 
 /* Section 5 (Contact Form) */
-/* Section 5 (Contact Form) */
 .section-5 {
   text-align: center;
   display: flex;
@@ -316,14 +315,12 @@ a.cta-button:nth-child(1) {
   justify-content: center;
 }
 
-/* Image container using grid */
 .section-5-image-container {
   width: 100%;
   display: grid;
   grid-template-areas: "overlap";
 }
 
-/* All direct children of the container will occupy the same grid area */
 .section-5-image-container > * {
   grid-area: overlap;
 }
@@ -334,7 +331,6 @@ a.cta-button:nth-child(1) {
   object-fit: cover;
 }
 
-/* Dark overlay */
 .section-5-overlay {
   background: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -353,7 +349,6 @@ a.cta-button:nth-child(1) {
   margin: 0;
 }
 
-/* Rest of your section-5 styles remain the same */
 .section-5 p {
   max-width: 600px;
   padding-top: 2rem;
