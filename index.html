@@ -170,6 +170,33 @@
           }
         });
       });
+
+    //   API
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const keyword = urlParams.get("keyword") || "b2b markedsføring";
+
+        // Update h3 with keyword
+        const h3Element = document.querySelector("h3");
+        if (h3Element) {
+          h3Element.textContent = keyword;
+        }
+
+        // Fetch generated content from Netlify function
+        fetch(`/.netlify/functions/generate-content?keyword=${encodeURIComponent(keyword)}`)
+          .then((response) => response.json())
+          .then((data) => {
+            // Update dynamic paragraph
+            const dynamicP = document.querySelector(".dynamicp");
+            if (dynamicP) {
+              dynamicP.textContent = data.text;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
     </script>
   </body>
 </html>
