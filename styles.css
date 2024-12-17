@@ -54,7 +54,7 @@ a.cta-button:nth-child(1) {
 
 .organic-blob {
   position: absolute;
-  top: 68%;
+  top: 58%;
   right: -27%;
   width: 322px;
 }
@@ -132,7 +132,7 @@ a.cta-button:nth-child(1) {
 }
 
 .hero .btn {
-  padding: 0.75rem 1.5rem;
+  padding: 1rem;
   border: 2px solid var(--color-black);
   border-radius: 50px;
   background-color: transparent;
@@ -166,6 +166,8 @@ a.cta-button:nth-child(1) {
   justify-items: center;
   align-items: center;
   background-color: var(--color-white);
+  position: relative;
+  z-index: 0;
 }
 
 .logo {
@@ -200,6 +202,7 @@ a.cta-button:nth-child(1) {
   margin: 0 auto;
   display: block;
   border-radius: 15px;
+  object-fit: contain;
 }
 
 /* Section 3 (Accordion Section) */
@@ -392,14 +395,14 @@ footer {
   }
 
   .hero {
-    height: 27vh;
+    height: 47vh;
   }
   .hero .buttons {
     margin-block: 4rem;
   }
 
   .organic-blob {
-    top: 20%;
+    top: 38%;
     right: -17%;
     width: 559px;
     overflow: hidden;
