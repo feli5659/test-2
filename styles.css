@@ -350,7 +350,6 @@ a.cta-button:nth-child(1) {
   font-weight: 400;
   font-style: normal;
   max-width: 40ch;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin: 0;
 }
 
