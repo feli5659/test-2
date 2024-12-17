@@ -6,7 +6,15 @@ const openai = new OpenAI({
 
 exports.handler = async (event) => {
   try {
-    const keyword = event.queryStringParameters.keyword || "digital marketing";
+    const keyword = event.queryStringParameters.keyword;
+
+    // Return error if no keyword provided
+    if (!keyword) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "No keyword provided" }),
+      };
+    }
 
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
