@@ -187,6 +187,12 @@
             h3Element.textContent = keyword;
           }
 
+          // Update contact section heading
+          const contactHeading = document.querySelector(".section-5 h2");
+          if (contactHeading) {
+            contactHeading.textContent = `Kontakt os i dag og hør mere om hvordan vi kan hjælpe med jeres ${keyword.toLowerCase()}`;
+          }
+
           fetch(`/.netlify/functions/generate-content?keyword=${encodeURIComponent(keyword)}`)
             .then((response) => response.json())
             .then((data) => {
