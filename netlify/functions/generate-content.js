@@ -4,30 +4,22 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const generatePrompt = (keyword) => {
-  const prompts = {
-    "b2b markedsføring": "Skriv en engagerende paragraf om hvordan Refyne hjælper B2B virksomheder med deres markedsføring med fokus på data-drevet tilgang og målbare resultater.",
-    "customer data platform": "Skriv en engagerende paragraf om hvordan Refyne hjælper virksomheder med at implementere og udnytte Customer Data Platforms til at skabe bedre kundeoplevelser og øget ROI.",
-    "seo analyse": "Skriv en engagerende paragraf om hvordan Refyne udfører dybdegående SEO-analyser og implementerer datadrevne strategier for at forbedre organisk synlighed.",
-  };
-
-  return prompts[keyword.toLowerCase()] || prompts["b2b markedsføring"];
-};
-
 exports.handler = async (event) => {
   try {
-    const keyword = event.queryStringParameters.keyword || "b2b markedsføring";
+    const keyword = event.queryStringParameters.keyword || "digital marketing";
 
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content: "Du er en professionel marketingekspert der skriver på dansk om Refyne's services.",
+          content: "Du er en professionel marketingekspert der skriver på dansk om Refyne's services. Du skriver engagerende og overbevisende tekster der fokuserer på data-drevet tilgang og målbare resultater.",
         },
         {
           role: "user",
-          content: generatePrompt(keyword),
+          content: `Skriv en engagerende paragraf om hvordan Refyne hjælper virksomheder med ${keyword}. 
+          Teksten skal være professionel og fokusere på Refyne's datadrevne tilgang og evne til at skabe målbare resultater. 
+          Hold teksten omkring 2-3 sætninger.`,
         },
       ],
       max_tokens: 200,
