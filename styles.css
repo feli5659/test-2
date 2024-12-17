@@ -392,14 +392,14 @@ footer {
   }
 
   .hero {
-    height: 57vh;
+    height: 27vh;
   }
   .hero .buttons {
     margin-block: 4rem;
   }
 
   .organic-blob {
-    top: 52%;
+    top: 20%;
     right: -17%;
     width: 559px;
     overflow: hidden;
@@ -476,6 +476,10 @@ footer {
     top: 42%;
     right: -6%;
     width: 639px;
+  }
+
+  .hero {
+    height: 57vh;
   }
 
   footer .footer-content {
