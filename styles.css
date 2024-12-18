@@ -70,7 +70,6 @@ a.cta-button:nth-child(1) {
   margin-top: 20px;
   width: fit-content;
   white-space: nowrap;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   transition: all 0.2s ease;
 }
 
