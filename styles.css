@@ -207,14 +207,10 @@ a.cta-button:nth-child(1) {
 /* Card section */
 
 .cards {
-  flex-direction: row;
-  gap: 4rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  padding-block: 5rem;
 }
 
 .cards h2 {
-  flex-basis: 100%;
   text-align: center;
   margin-bottom: 2rem;
   font-family: "DM Serif Display", serif;
@@ -233,6 +229,13 @@ a.cta-button:nth-child(1) {
   border: 2px solid #1818183f;
   transition: 0.5s ease-out;
   overflow: visible;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .card-details {
@@ -537,7 +540,7 @@ footer {
     width: 50%;
   }
 
-  .cards {
+  .cards-container {
     flex-direction: row;
     gap: 4rem;
     justify-content: center;
