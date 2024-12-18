@@ -225,6 +225,12 @@ a.cta-button:nth-child(1) {
   overflow: visible;
 }
 
+.cards h2 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
 .card-details {
   color: var(--color-black);
   height: 100%;
