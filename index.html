@@ -223,6 +223,7 @@
           fetch(`/.netlify/functions/generate-content?keyword=${encodeURIComponent(keyword)}`)
             .then((response) => response.json())
             .then((data) => {
+              // Update main content
               const dynamicP = document.querySelector(".dynamicp");
               if (dynamicP) {
                 if (!dynamicP.dataset.originalContent) {
@@ -233,13 +234,11 @@
                 // Update the h2 element based on the new paragraph content
                 const section2H2 = document.querySelector(".section-2 .text-block h2");
                 if (section2H2) {
-                  // Store original h2 content if not already stored
                   if (!section2H2.dataset.originalContent) {
                     section2H2.dataset.originalContent = section2H2.textContent;
                   }
 
                   // Generate a relevant heading based on the paragraph content
-                  const paragraphText = data.text;
                   let newHeading = `${keyword} Eksperter`;
 
                   // If the API response includes a title, use that instead
@@ -250,7 +249,31 @@
                   section2H2.textContent = newHeading;
                 }
               }
-              
+
+              // Update cards content
+              if (data.cards) {
+                const cardElements = document.querySelectorAll(".card");
+                data.cards.forEach((cardData, index) => {
+                  if (cardElements[index]) {
+                    const titleElement = cardElements[index].querySelector(".text-title");
+                    const descriptionElement = cardElements[index].querySelector(".text-body");
+
+                    if (titleElement) {
+                      if (!titleElement.dataset.originalContent) {
+                        titleElement.dataset.originalContent = titleElement.textContent;
+                      }
+                      titleElement.textContent = cardData.title;
+                    }
+
+                    if (descriptionElement) {
+                      if (!descriptionElement.dataset.originalContent) {
+                        descriptionElement.dataset.originalContent = descriptionElement.textContent;
+                      }
+                      descriptionElement.textContent = cardData.description;
+                    }
+                  }
+                });
+              }
             })
             .catch((error) => {
               console.error("Error:", error);
@@ -265,7 +288,20 @@
                 section2H2.textContent = section2H2.dataset.originalContent;
               }
 
-              
+              // Restore original card content
+              const cardElements = document.querySelectorAll(".card");
+              cardElements.forEach((card) => {
+                const titleElement = card.querySelector(".text-title");
+                const descriptionElement = card.querySelector(".text-body");
+
+                if (titleElement && titleElement.dataset.originalContent) {
+                  titleElement.textContent = titleElement.dataset.originalContent;
+                }
+
+                if (descriptionElement && descriptionElement.dataset.originalContent) {
+                  descriptionElement.textContent = descriptionElement.dataset.originalContent;
+                }
+              });
             });
         }
       });

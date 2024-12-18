@@ -8,7 +8,6 @@ exports.handler = async (event) => {
   try {
     const keyword = event.queryStringParameters.keyword;
 
-    // Return error if no keyword provided
     if (!keyword) {
       return {
         statusCode: 400,
@@ -16,23 +15,61 @@ exports.handler = async (event) => {
       };
     }
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "Du er en professionel marketingekspert der skriver på dansk om Refyne's services. Du skriver engagerende og overbevisende tekster der fokuserer på data-drevet tilgang og målbare resultater.",
-        },
-        {
-          role: "user",
-          content: `Skriv en engagerende paragraf om hvordan Refyne hjælper virksomheder med ${keyword}. 
-          Teksten skal være professionel og fokusere på Refyne's datadrevne tilgang og evne til at skabe målbare resultater. 
-          Hold teksten omkring 2-3 sætninger.`,
-        },
-      ],
-      max_tokens: 200,
-      temperature: 0.7,
-    });
+    // Generate both the main content and card content in parallel
+    const [mainCompletion, cardCompletion] = await Promise.all([
+      // Original content generation
+      openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: "Du er en professionel marketingekspert der skriver på dansk om Refyne's services. Du skriver engagerende og overbevisende tekster der fokuserer på data-drevet tilgang og målbare resultater.",
+          },
+          {
+            role: "user",
+            content: `Skriv en engagerende paragraf om hvordan Refyne hjælper virksomheder med ${keyword}. 
+            Teksten skal være professionel og fokusere på Refyne's datadrevne tilgang og evne til at skabe målbare resultater. 
+            Hold teksten omkring 2-3 sætninger.`,
+          },
+        ],
+        max_tokens: 200,
+        temperature: 0.7,
+      }),
+
+      // New card content generation
+      openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: "Du er en professionel marketingekspert der skriver på dansk om Refyne's services. Du skriver engagerende og overbevisende tekster der fokuserer på data-drevet tilgang og målbare resultater.",
+          },
+          {
+            role: "user",
+            content: `Generer 3 kort med indhold om hvordan Refyne hjælper med ${keyword}. 
+            For hvert kort, giv:
+            1. En kort overskrift (max 4 ord)
+            2. En beskrivende tekst på 2-3 sætninger der fremhæver en specifik fordel eller proces
+            
+            Formater outputtet som JSON med strukturen:
+            {
+              "cards": [
+                {
+                  "title": "...",
+                  "description": "..."
+                }
+              ]
+            }`,
+          },
+        ],
+        max_tokens: 500,
+        temperature: 0.7,
+        response_format: { type: "json_object" },
+      }),
+    ]);
+
+    const mainContent = mainCompletion.choices[0].message.content;
+    const cardContent = JSON.parse(cardCompletion.choices[0].message.content);
 
     return {
       statusCode: 200,
@@ -40,7 +77,8 @@ exports.handler = async (event) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        text: completion.choices[0].message.content,
+        text: mainContent,
+        cards: cardContent.cards,
         keyword: keyword,
       }),
     };
