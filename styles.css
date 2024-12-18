@@ -156,6 +156,10 @@ a.cta-button:nth-child(1) {
   border: 2px solid var(--color-black);
 }
 
+.buttons a {
+  font-size: 0.7rem;
+}
+
 /* logo-grid */
 .logo-grid {
   display: grid;
@@ -181,7 +185,7 @@ a.cta-button:nth-child(1) {
 }
 
 .section-2 h2 {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   font-family: "DM Serif Display", serif;
   font-weight: 400;
@@ -190,7 +194,7 @@ a.cta-button:nth-child(1) {
 }
 
 .section-2 p {
-  text-align: center;
+  text-align: left;
   max-width: 600px;
   line-height: 2rem;
   margin-bottom: 3rem;
@@ -235,9 +239,7 @@ a.cta-button:nth-child(1) {
 
 .cards-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2rem;
 }
 
 .card-details {
@@ -274,17 +276,6 @@ a.cta-button:nth-child(1) {
 .text-title {
   font-size: 1.5em;
   font-weight: bold;
-}
-
-/*Hover*/
-.card:hover {
-  border-color: var(--color-blue);
-  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-}
-
-.card:hover .card-button {
-  transform: translate(-50%, 50%);
-  opacity: 1;
 }
 
 /* Section 3 (Accordion Section) */
@@ -505,6 +496,10 @@ footer {
     margin-block: 4rem;
   }
 
+  .buttons a {
+    font-size: 1rem;
+  }
+
   .organic-blob {
     top: 38%;
     right: -17%;
@@ -530,10 +525,7 @@ footer {
     justify-content: space-between;
     gap: 2rem;
   }
-  .section-2 h2,
-  .section-2 p {
-    text-align: left;
-  }
+
   .section-2 .sec2-image {
     border-radius: 15px;
     width: 50%;
@@ -542,10 +534,22 @@ footer {
     width: 50%;
   }
 
+  /* Cards */
   .cards-container {
     flex-direction: row;
-    gap: 4rem;
+    gap: 2rem;
     justify-content: center;
+  }
+
+  /*Hover*/
+  .card:hover {
+    border-color: var(--color-blue);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .card:hover .card-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
   }
 
   /* accordion desktop*/
