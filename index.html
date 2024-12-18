@@ -50,7 +50,6 @@
         <img src="assets/1696028.jpg" alt="Section 2" class="sec2-image" />
       </div>
     </section>
-
     <section class="cards">
       <div class="card">
         <div class="card-details">
@@ -62,7 +61,7 @@
       <div class="card">
         <div class="card-details">
           <p class="text-title">Kundetilfredshed</p>
-          <p class="text-body">Vi skal tilvælges fordi vores niveau er højt. Hver måned. Derfor kan I se vores kundetilfredshed - helt tilbage til starten. d</p>
+          <p class="text-body">Vi skal tilvælges fordi vores niveau er højt. Hver måned. Derfor kan I se vores kundetilfredshed - helt tilbage til starten.</p>
         </div>
         <button class="card-button">Kontakt os</button>
       </div>
@@ -251,6 +250,7 @@
                   section2H2.textContent = newHeading;
                 }
               }
+              
             })
             .catch((error) => {
               console.error("Error:", error);
@@ -264,6 +264,8 @@
               if (section2H2 && section2H2.dataset.originalContent) {
                 section2H2.textContent = section2H2.dataset.originalContent;
               }
+
+              
             });
         }
       });
