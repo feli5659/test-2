@@ -206,12 +206,15 @@ a.cta-button:nth-child(1) {
 
 /* Card section */
 .cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 2rem;
   padding-block: 5rem;
 }
 
 .card {
-  width: 249px;
+  width: min(249px, 90%);
   height: 298px;
   border-radius: 20px;
   background: var(--color-white);
@@ -525,10 +528,9 @@ footer {
   }
 
   .cards {
-    display: flex;
+    flex-direction: row;
     gap: 4rem;
     justify-content: center;
-    padding-block: 5rem;
   }
 
   /* accordion desktop*/
