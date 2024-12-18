@@ -230,6 +230,7 @@ a.cta-button:nth-child(1) {
   border: 2px solid #1818183f;
   transition: 0.5s ease-out;
   overflow: visible;
+  cursor: pointer;
 }
 
 .cards-container {
