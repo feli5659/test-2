@@ -239,7 +239,9 @@ a.cta-button:nth-child(1) {
 
 .cards-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 2rem;
 }
 
 .card-details {
@@ -537,7 +539,7 @@ footer {
   /* Cards */
   .cards-container {
     flex-direction: row;
-    gap: 2rem;
+    padding-inline: 1rem;
     justify-content: center;
   }
 
