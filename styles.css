@@ -308,7 +308,7 @@ a.cta-button:nth-child(1) {
 
 .section-3 p {
   text-align: left;
-  max-width: 600px;
+  max-width: 73ch;
   margin-bottom: 2rem;
   line-height: 2rem;
 }
