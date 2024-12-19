@@ -209,16 +209,16 @@
         const keyword = urlParams.get("keyword");
 
         if (!keyword) {
-          // No keyword in URL - keep original content
+          // Hvis ikke der er et keyword, vis default content
           return;
         } else {
-          // We have a keyword - update content
+          // Hvis der er keyword, opdater content
           const h3Element = document.querySelector("h3");
           if (h3Element) {
             h3Element.textContent = keyword;
           }
 
-          // Update contact section heading
+          // Opdater kontakt sektion efter keyword
           const contactHeading = document.querySelector(".section-5 h2");
           if (contactHeading) {
             contactHeading.textContent = `Kontakt os i dag og hør mere om hvordan vi kan hjælpe med jeres ${keyword.toLowerCase()}`;
@@ -227,7 +227,7 @@
           fetch(`/.netlify/functions/generate-content?keyword=${encodeURIComponent(keyword)}`)
             .then((response) => response.json())
             .then((data) => {
-              // Update main content
+              // Opdater sektion 2 p content
               const dynamicP = document.querySelector(".dynamicp");
               if (dynamicP) {
                 if (!dynamicP.dataset.originalContent) {
@@ -235,17 +235,17 @@
                 }
                 dynamicP.textContent = data.text;
 
-                // Update the h2 element based on the new paragraph content
+                // Opdater sektion 2 h2 content baseret på p content
                 const section2H2 = document.querySelector(".section-2 .text-block h2");
                 if (section2H2) {
                   if (!section2H2.dataset.originalContent) {
                     section2H2.dataset.originalContent = section2H2.textContent;
                   }
 
-                  // Generate a relevant heading based on the paragraph content
+                  // Formatering af titel
                   let newHeading = `${keyword.charAt(0).toUpperCase()}${keyword.slice(1).toLowerCase()} eksperter`;
 
-                  // If the API response includes a title, use that instead
+                  // Hvis API respons har en title, brug det.
                   if (data.title) {
                     newHeading = data.title;
                   }
@@ -254,7 +254,7 @@
                 }
               }
 
-              // Update cards content
+              // Opdater indhold i kort
               if (data.cards) {
                 const cardElements = document.querySelectorAll(".card");
                 data.cards.forEach((cardData, index) => {
@@ -281,7 +281,7 @@
             })
             .catch((error) => {
               console.error("Error:", error);
-              // Restore original content if there's an error
+              // Fallback indhold ved error
               const dynamicP = document.querySelector(".dynamicp");
               if (dynamicP && dynamicP.dataset.originalContent) {
                 dynamicP.textContent = dynamicP.dataset.originalContent;
@@ -292,7 +292,6 @@
                 section2H2.textContent = section2H2.dataset.originalContent;
               }
 
-              // Restore original card content
               const cardElements = document.querySelectorAll(".card");
               cardElements.forEach((card) => {
                 const titleElement = card.querySelector(".text-title");

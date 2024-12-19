@@ -15,9 +15,9 @@ exports.handler = async (event) => {
       };
     }
 
-    // Generate both the main content and card content in parallel
+    
     const [mainCompletion, cardCompletion] = await Promise.all([
-      // Original content generation
+      
       openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
@@ -36,7 +36,7 @@ exports.handler = async (event) => {
         temperature: 0.7,
       }),
 
-      // New card content generation
+      
       openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
