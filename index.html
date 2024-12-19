@@ -54,7 +54,7 @@
     </section>
     <section class="cards">
       <div>
-        <h2>Vores kunder beslutter med afsæt i data. Gør du?</h2>
+        <h2 class="card-h2">Vores kunder beslutter med afsæt i data. Gør du?</h2>
       </div>
       <div class="cards-container">
         <div class="card">
@@ -211,16 +211,16 @@
         const keyword = urlParams.get("keyword");
 
         if (!keyword) {
-          // Hvis ikke der er et keyword, vis default content
+          // If no keyword, show default content
           return;
         } else {
-          // Hvis der er keyword, opdater content
+          // Update content if keyword exists
           const h3Element = document.querySelector("h3");
           if (h3Element) {
             h3Element.textContent = keyword;
           }
 
-          // Opdater kontakt sektion efter keyword
+          // Update contact section based on keyword
           const contactHeading = document.querySelector(".section-5 h2");
           if (contactHeading) {
             contactHeading.textContent = `Kontakt os i dag og hør mere om hvordan vi kan hjælpe med jeres ${keyword.toLowerCase()}`;
@@ -229,7 +229,7 @@
           fetch(`/.netlify/functions/generate-content?keyword=${encodeURIComponent(keyword)}`)
             .then((response) => response.json())
             .then((data) => {
-              // Opdater sektion 2 p content
+              // Update section 2 p content
               const dynamicP = document.querySelector(".dynamicp");
               if (dynamicP) {
                 if (!dynamicP.dataset.originalContent) {
@@ -237,17 +237,17 @@
                 }
                 dynamicP.textContent = data.text;
 
-                // Opdater sektion 2 h2 content baseret på p content
+                // Update section 2 h2 content based on p content
                 const section2H2 = document.querySelector(".section-2 .text-block h2");
                 if (section2H2) {
                   if (!section2H2.dataset.originalContent) {
                     section2H2.dataset.originalContent = section2H2.textContent;
                   }
 
-                  // Formatering af titel
+                  // Format title
                   let newHeading = `${keyword.charAt(0).toUpperCase()}${keyword.slice(1).toLowerCase()} eksperter`;
 
-                  // Hvis API respons har en title, brug det.
+                  // Use API response title if available
                   if (data.title) {
                     newHeading = data.title;
                   }
@@ -256,7 +256,21 @@
                 }
               }
 
-              // Opdater indhold i kort
+              // Update card heading
+              const cardH2 = document.querySelector(".card-h2");
+              if (cardH2) {
+                if (!cardH2.dataset.originalContent) {
+                  cardH2.dataset.originalContent = cardH2.textContent;
+                }
+                // Use the heading from API response if available, otherwise create a default
+                if (data.cardHeading) {
+                  cardH2.textContent = data.cardHeading;
+                } else {
+                  cardH2.textContent = `Skal ${keyword.toLowerCase()} være fundamentet for jeres næste vækstrejse?`;
+                }
+              }
+
+              // Update card content
               if (data.cards) {
                 const cardElements = document.querySelectorAll(".card");
                 data.cards.forEach((cardData, index) => {
@@ -283,7 +297,7 @@
             })
             .catch((error) => {
               console.error("Error:", error);
-              // Fallback indhold ved error
+              // Restore original content on error
               const dynamicP = document.querySelector(".dynamicp");
               if (dynamicP && dynamicP.dataset.originalContent) {
                 dynamicP.textContent = dynamicP.dataset.originalContent;
@@ -292,6 +306,11 @@
               const section2H2 = document.querySelector(".section-2 .text-block h2");
               if (section2H2 && section2H2.dataset.originalContent) {
                 section2H2.textContent = section2H2.dataset.originalContent;
+              }
+
+              const cardH2 = document.querySelector(".card-h2");
+              if (cardH2 && cardH2.dataset.originalContent) {
+                cardH2.textContent = cardH2.dataset.originalContent;
               }
 
               const cardElements = document.querySelectorAll(".card");

@@ -15,9 +15,8 @@ exports.handler = async (event) => {
       };
     }
 
-    
-    const [mainCompletion, cardCompletion] = await Promise.all([
-      
+    const [mainCompletion, cardCompletion, headingCompletion] = await Promise.all([
+      // Main content completion (unchanged)
       openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
@@ -36,7 +35,7 @@ exports.handler = async (event) => {
         temperature: 0.7,
       }),
 
-      
+      // Card content completion (unchanged)
       openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
@@ -66,10 +65,30 @@ exports.handler = async (event) => {
         temperature: 0.7,
         response_format: { type: "json_object" },
       }),
+
+      // New completion for card heading
+      openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: "Du er en professionel marketingekspert der skriver på dansk om Refyne's services. Du skriver engagerende og overbevisende tekster der fokuserer på data-drevet tilgang og målbare resultater.",
+          },
+          {
+            role: "user",
+            content: `Skriv en kort, fængende overskrift der spørger om virksomheder er klar til at træffe beslutninger baseret på data inden for ${keyword}. 
+            Overskriften skal være kort og præcis, max 10 ord.
+            Den skal være formuleret som et spørgsmål og relatere til ${keyword} og data-drevet beslutningstagning.`,
+          },
+        ],
+        max_tokens: 100,
+        temperature: 0.7,
+      }),
     ]);
 
     const mainContent = mainCompletion.choices[0].message.content;
     const cardContent = JSON.parse(cardCompletion.choices[0].message.content);
+    const cardHeading = headingCompletion.choices[0].message.content;
 
     return {
       statusCode: 200,
@@ -79,6 +98,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         text: mainContent,
         cards: cardContent.cards,
+        cardHeading: cardHeading,
         keyword: keyword,
       }),
     };
