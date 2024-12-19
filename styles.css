@@ -271,7 +271,7 @@ a.cta-button:nth-child(1) {
 }
 
 .text-body {
-  color: rgb(134, 134, 134);
+  color: var(--color-black);
 }
 
 /*Text*/
