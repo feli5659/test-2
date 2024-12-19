@@ -29,11 +29,6 @@ body {
   background-color: var(--color-light-creme);
 }
 
-img {
-  max-width: 100%;
-  object-fit: contain;
-}
-
 /* HEADER */
 header {
   display: flex;
